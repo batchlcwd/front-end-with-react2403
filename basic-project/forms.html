@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Html Forms</title>
+
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <header>
+      <nav></nav>
+    </header>
+
+    <main>
+      <h1 id="heading1">Html Forms</h1>
+      <p class="p1">User registration form</p>
+
+      <!-- input field -->
+
+      <!-- <input type="text" /> -->
+      <!-- Female <input type="radio" /> -->
+      <!-- <textarea rows="10"></textarea> -->
+
+      <!-- <select>
+        <option selected disabled value="">---select country---</option>
+        <option value="">India</option>
+        <option value="">USA</option>
+        <option value="">Pakistan</option>
+        <option value="">SriLanka</option>
+      </select> -->
+
+      <!-- <label for="name">Enter name</label>
+      <input id="name" type="text" /> -->
+
+      <form action="/user" method="post">
+        <table>
+          <tr>
+            <td>Enter Name</td>
+            <td>
+              <input name="username" type="text" placeholder="Enter here" />
+            </td>
+          </tr>
+          <tr>
+            <td>Enter Email</td>
+            <td><input name="useremail" type="email" /></td>
+          </tr>
+          <tr>
+            <td>Enter Password</td>
+            <td><input name="userpassword" type="password" /></td>
+          </tr>
+
+          <tr>
+            <td>Enter age</td>
+            <td><input name="age" type="number" placeholder="Enter here" /></td>
+          </tr>
+
+          <tr>
+            <td>Enter Address</td>
+            <td>
+              <textarea name="address" placeholder="Enter here"></textarea>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Select Gender</td>
+            <td>
+              Male <input name="gender" type="radio" /> Female<input
+                name="gender"
+                type="radio"
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>Select Country</td>
+            <td>
+              <select name="country" id="">
+                <option selected disabled value="">--select country--</option>
+                <option value="">INDIA</option>
+                <option value="">USA</option>
+                <option value="">America</option>
+                <option value="">South Africa</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>Date of Birth</td>
+            <td>
+              <input type="date" />
+            </td>
+          </tr>
+          <tr>
+            <td>Interested Technologies</td>
+            <td>
+              Java<input type="checkbox" /> Python <input type="checkbox" /> Php
+              <input type="checkbox" />
+            </td>
+          </tr>
+          <tr>
+            <td>Select Profile Photo</td>
+            <td><input type="file" /></td>
+          </tr>
+          <tr>
+            <td>
+              <!-- <input type="submit" value="Submit" /> -->
+              <button type="submit">Submit</button>
+              <button type="reset">Resets</button>
+            </td>
+          </tr>
+        </table>
+      </form>
+    </main>
+  </body>
+</html>

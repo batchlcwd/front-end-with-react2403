@@ -1,0 +1,19 @@
+/* h1 {
+        color: red;
+        background-color: bisque;
+      }
+      p {
+        color: blue;
+      } */
+
+/* id selector */
+#heading1 {
+  color: red;
+  background-color: antiquewhite;
+}
+
+/* class selector */
+.p1 {
+  color: pink;
+  background-color: black;
+}
