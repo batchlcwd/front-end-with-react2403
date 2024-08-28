@@ -8,6 +8,7 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@24,500,0,0"
     />
+   
     <link rel="stylesheet" href="css/style.css" />
   </head>
 
@@ -23,16 +24,19 @@
 
         <ul class="links">
           <li>
-            <a href="index.html">Home</a>
+            <a href="index.html#banner">Home</a>
           </li>
           <li>
-            <a href="about.html">About</a>
+            <a href="services.html">Services</a>
           </li>
           <li>
-            <a href="skill.html">Skills</a>
+            <a href="index.html#about">About</a>
           </li>
           <li>
-            <a href="contact.html">Contact</a>
+            <a href="index.html#summary">Skills</a>
+          </li>
+          <li>
+            <a href="index.html#contact">Contact</a>
           </li>
         </ul>
       </nav>
@@ -41,7 +45,7 @@
     <!-- #END header -->
 
     <!-- banner section -->
-    <section class="banner">
+    <section class="banner" id="banner">
       <div class="overlay"></div>
       <h1 style="color: white" class="heading">
         Fullstack React + Spring Boot
@@ -57,7 +61,7 @@
 
     <!-- about section  -->
 
-    <section class="about p-40">
+    <section class="about p-40" id="about">
       <div class="section_header">
         <h1 class="heading">About</h1>
         <p class="sub_heading">These things tell more about me</p>
@@ -152,7 +156,7 @@
 
     <!-- start summary and skills section -->
 
-    <section class="summary bg-dark p-40">
+    <section class="summary bg-dark p-40" id="summary">
       <div class="section_header">
         <h1 class="heading">More about me</h1>
         <p class="sub_heading">These things tell more about me</p>
@@ -217,8 +221,55 @@
 
       </div> -->
     </section>
+
+    <!-- End of summar section -->
+
+    <section class="contact" id="contact">
+      <div class="section_header">
+        <h1 class="heading">Contact Me</h1>
+        <p class="sub_heading">You can contact me an any time</p>
+        <div class="heading_border"></div>
+      </div>
+
+      <div class="flex items-center flex-row px-10">
+        <div class="w-full p-40">
+          <!-- left: map -->
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3559.1462870433456!2d81.01250027564144!3d26.867092976674336!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399be29386aaaab3%3A0xf9861496c80fff11!2sSubstring%20Technologies!5e0!3m2!1sen!2sin!4v1724859692529!5m2!1sen!2sin"
+            class="w-full"
+            style="border: 0; height: 400px"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
+        <div class="w-full p-40">
+          <!-- right: contact form -->
+          <div class="form_container">
+            <form action="contact.html">
+              <div class="form_input">
+                <label for="name">Name</label>
+                <input type="text" />
+              </div>
+              <div class="form_input">
+                <label for="name">Email</label>
+                <input type="text" />
+              </div>
+              <div class="form_input">
+                <label for="name">Message</label>
+                <textarea name="" id="" cols="30" rows="10"></textarea>
+              </div>
+
+              <div class="flex justify-center items-center p-20 gap-10">
+                <button class="success-button button" type="submit">
+                  Send Message
+                </button>
+                <button class="reset-button button" type="reset">Reset</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
   </body>
 </html>
-
-
-

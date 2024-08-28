@@ -120,11 +120,12 @@ button {
 }
 
 .button {
-  font-size: 2rem;
+  font-size: 1rem;
   padding: 10px 15px;
   background-color: aqua;
   border-radius: 10px;
   border: none;
+  cursor: pointer;
 }
 
 .button:hover {
@@ -183,7 +184,7 @@ button {
   flex-direction: column;
 }
 
-.items-center{
+.items-center {
   align-items: center;
 }
 
@@ -206,7 +207,7 @@ button {
 .pl-10 {
   padding-left: 10px;
 }
-.pl-20{
+.pl-20 {
   padding-left: 20px;
 }
 
@@ -234,82 +235,127 @@ button {
   color: #24c6e7;
 }
 
-
-.image-effect{
-
+.image-effect {
   border-radius: 10px;
   filter: drop-shadow(0 0 10px black);
-
 }
-.w-full{
+.w-full {
   width: 100%;
 }
-.h-full{
+.h-full {
   height: 100%;
 }
 
-.border-left{
+.border-left {
   border-left: 2px solid #24c6e7;
 }
 
-.circle{
+.circle {
   width: 20px;
   height: 20px;
   border: 2px solid #24c6e7;
   border-radius: 50%;
   left: -12px;
   top: -22px;
-  
+
   position: absolute;
 }
 
-.relative{
+.relative {
   position: relative;
 }
 
-.absolute{
+.absolute {
   position: absolute;
 }
-.gap-30{
+.gap-30 {
   gap: 30px;
 }
 
-.gap-50{
+.gap-50 {
   gap: 50px;
 }
 
-.p-40{
+.p-40 {
   padding: 40px;
 }
 
-.bg-dark{
+.bg-dark {
   background: #e2e2e2;
 }
 
-.test{
+.test {
   color: red;
   position: relative;
 }
 
-.test::before{
+.test::before {
   content: "";
-width: 20px;
-height: 20px;
-border-right: 5px solid red;
-display: block;
-border-radius: 50%;
-
+  width: 20px;
+  height: 20px;
+  border-right: 5px solid red;
+  display: block;
+  border-radius: 50%;
 }
 
+.test::after {
+  content: "";
+  width: 20px;
+  height: 20px;
+  border-left: 5px solid green;
+  display: block;
+  border-radius: 50%;
+  position: absolute;
+  top: -20px;
+}
 
-.test::after{
-content: "";
-width: 20px;
-height: 20px;
-border-left: 5px solid green;
-display: block;
-border-radius: 50%;
-position: absolute;
-top: -20px;
+.form_container input[type="text"],
+input[type="password"],
+textarea {
+  width: 100%;
+  padding: 15px;
+  border-radius: 20px;
+  outline: none;
+  border: none;
+  background-color: #e2e2e2;
+}
 
+.form_container input[type="text"]:focus {
+  background-color: #2c2b2b;
+  color: white;
+}
+.form_container textarea:focus {
+  background-color: #2c2b2b;
+  color: white;
+}
+
+.form_container .form_input {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 8px;
+  /* border: 1px solid red; */
+}
+
+.success-button {
+  background-color: green;
+  color: white;
+}
+
+.reset-button {
+  background: orange;
+}
+
+@media only screen and (max-width: 768px) {
+  .heading {
+    font-size: 1.5rem;
+    padding: 0 10px;
+    /* border: 1px solid red; */
+  }
+
+  .sub_heading{
+    font-size: 1rem;
+    padding: 5px 10px;
+    text-align: center;
+  }
 }
