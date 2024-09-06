@@ -1,0 +1,21 @@
+{
+  "name": "javascript_concepts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "dev": "node app.js"
+  },
+  "keywords": [],
+  "author": "Sahil",
+  "license": "ISC",
+  
+  "devDependencies": {
+    "tailwindcss": "^3.4.10"
+  },
+  "dependencies": {
+    "uuid": "^10.0.0"
+  }
+}

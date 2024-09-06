@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Feedback App</title>
+    <link rel="stylesheet" href="css/output.css" />
+  </head>
+  <body>
+    <main
+      class="bg-gray-900 h-auto md:h-screen w-screen text-white flex flex-col md:flex-row"
+    >
+      <div class="w-full bg-blue-600 flex flex-col items-center justify-center">
+        <!-- form -->
+
+        <form
+          id="feedback_form"
+          action=""
+          class="bg-gray-800 flex flex-col gap-2 rounded-lg w-full md:w-1/2 lg:w-2/3 p-12"
+        >
+          <div class="image_container flex justify-center">
+            <img
+              class="w-20 lg:w-36 h-auto"
+              src="images/feedback.png"
+              alt="feedback icon"
+            />
+          </div>
+          <h1 id="form_heading" class="text-center text-2xl font-bold mb-5">
+            Feedback Form
+          </h1>
+          <p class="text-gray-400">How was your experince with use ?</p>
+
+          <!-- name field -->
+          <div class="form_input">
+            <label for="name" class="text-white mb-4">Name</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              class="w-full px-2 py-2 mt-1 text-gray-300 bg-gray-600 border-none rounded-lg"
+              placeholder="Enter here"
+            />
+          </div>
+          <!-- email field -->
+          <div class="form_input">
+            <label for="email" class="text-white mb-4">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              class="w-full px-2 py-2 mt-1 text-gray-300 bg-gray-600 border-none rounded-lg"
+              placeholder="Enter here"
+            />
+          </div>
+
+          <!-- rating field -->
+          <div class="input_field">
+            <label class="rating">Rating</label>
+
+            <select
+              id="rating"
+              name="rating"
+              class="w-full mt-1 bg-gray-700 py-2 px-2 rounded-lg"
+            >
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </select>
+          </div>
+
+          <!-- message box -->
+          <div class="input_field">
+            <label for="message" class="text-white mb-4">Message</label>
+            <textarea
+              placeholder="Write here something"
+              id="message"
+              name="message"
+              rows="4"
+              class="w-full mt-1 bg-gray-700 py-2 px-2 rounded-lg"
+            ></textarea>
+          </div>
+
+          <div class="input_field flex justify-center gap-3">
+            <button
+              type="submit"
+              class="bg-blue-600 hover:bg-blue-500 px-3 py-2 rounded"
+            >
+              Submit
+            </button>
+            <button
+              type="button"
+              id="clear_button"
+              class="bg-yellow-600 hover:bg-yellow-500 px-3 py-2 rounded"
+            >
+              Clear
+            </button>
+          </div>
+        </form>
+      </div>
+      <div class="w-full h-full overflow-auto">
+        <!-- feedbacks -->
+
+        <div class="feedback_container p-4">
+          <h1 class="text-3xl font-bold text-center my-2">Feedback List</h1>
+
+          <div id="feedback_item_container"></div>
+        </div>
+      </div>
+    </main>
+
+    <script src="js/feedback.js"></script>
+  </body>
+</html>
