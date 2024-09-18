@@ -34,7 +34,7 @@ function loadFeedbacks() {
 
             <h1 class="text-2xl text-gray-400">Rating : ${item.rating}</h1>
             <div>
-                <button class="px-3 py-2 bg-red-600 text-sm hover:bg-red-400 rounded">Delete</button>
+                <button onclick="deleteFeedback('${item.email}')" class="px-3 py-2 bg-red-600 text-sm hover:bg-red-400 rounded">Delete</button>
             </div>
             </div>
           </div>`;
@@ -79,3 +79,23 @@ clearButton.addEventListener("click", () => {
   //   formHeading.classList.add("text-4xl");
   //   formHeading.classList.add("bg-red-500!important");
 });
+
+function deleteFeedback(id) {
+  // alert("deleteting " + id);
+
+  const feedbacks = JSON.parse(localStorage.getItem("feedbacks")) || [];
+  console.log(feedbacks);
+
+  //remove the feeback of given id.
+
+  const newFeedbackList = feedbacks.filter((item) => {
+    return item.email != id;
+  });
+
+  console.log(newFeedbackList);
+  //updaate new list to localstorage
+  localStorage.setItem("feedbacks", JSON.stringify(newFeedbackList));
+
+  // load the new feedbacks from local storage to ui
+  loadFeedbacks();
+}
