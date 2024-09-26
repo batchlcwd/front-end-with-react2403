@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import toast from "react-hot-toast";
+import { useNotes } from "../context/notes-context";
 const AddNotes = () => {
+  const { notes, setNotes } = useNotes();
+
   const [status, setStatus] = useState([
     {
       id: -1,
@@ -47,7 +50,6 @@ const AddNotes = () => {
     // console.log(event);
     // console.log(event.target.title.value);
     // console.log(event.target.content.value);
-    console.log(formData);
 
     // validations
     if (formData.title == "") {
@@ -63,14 +65,17 @@ const AddNotes = () => {
     // if(formData.title.test(regex))
     // {}
 
-    toast.loading("Submitted", {
+    toast.success("Submitted", {
       position: "top-center",
     });
+
+    console.log(formData);
+    setNotes([...notes, formData]);
   }
 
   //  value change
   function valueChange(event) {
-    console.log(event);
+    // console.log(event);
 
     setFormData({
       ...formData,
@@ -191,7 +196,8 @@ const AddNotes = () => {
           </button>
         </div>
       </form>
-      {JSON.stringify(formData)}
+      {/* {JSON.stringify(formData)} */}
+      {/* <h1>Notes Length: {notes.length}</h1> */}
     </div>
   );
 };
