@@ -33,9 +33,14 @@ const AddNotes = () => {
       id: 5,
       value: "Rejected",
     },
+    {
+      id: "6",
+      value: "done",
+    },
   ]);
 
   const [formData, setFormData] = useState({
+    id: -1,
     title: "",
     content: "",
     statusId: -1,
@@ -70,6 +75,7 @@ const AddNotes = () => {
     });
 
     console.log(formData);
+    formData.id = Math.round(Math.random() * 1000000);
     setNotes([...notes, formData]);
   }
 
