@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from "react";
-
+import { noteLocalFun } from "../helper/helper";
 // 1.create context
 // Context: A way to pass data through the component tree without having to pass props manually at every level.
 const NoteContext = createContext();

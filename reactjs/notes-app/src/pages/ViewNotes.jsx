@@ -11,6 +11,12 @@ const ViewNotes = () => {
       {notes.map((note, index) => (
         <NoteList key={index} note={note} />
       ))}
+
+      {notes.length <= 0 ? (
+        <h1 className="text-4xl text-center">No notes available</h1>
+      ) : (
+        ""
+      )}
     </div>
   );
 };

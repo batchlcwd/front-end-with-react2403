@@ -7,3 +7,17 @@ export const noteStatus = {
   5: "Rejected",
   6: "Done",
 };
+
+//note loal Storage Functions
+export const noteLocalFun = {
+  saveArray: (array) => {
+    localStorage.setItem("noteArray", JSON.stringify(array));
+  },
+  getArray: () => {
+    const arr = localStorage.getItem("noteArray") | [];
+    return JSON.parse(arr);
+  },
+  clear: () => {
+    localStorage.removeItem("noteArray");
+  },
+};
