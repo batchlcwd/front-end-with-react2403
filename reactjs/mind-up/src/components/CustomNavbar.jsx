@@ -6,6 +6,18 @@ import { useAuth } from "../context/AuthContext";
 const CustomNavbar = () => {
   const { isLogin, login, logout, user } = useAuth();
 
+  const [loginLinks, setLoginLinks] = useState([
+    {
+      name: "Dashbaord",
+      link: "/dashboard/home",
+    },
+    ,
+    {
+      name: "Profile",
+      link: `/dashboard/profile`,
+    },
+  ]);
+
   const [links, setLinks] = useState([
     { name: "Home", link: "/" },
     { name: "About", link: "/about" },
@@ -55,7 +67,13 @@ const CustomNavbar = () => {
 
         {isLogin() && (
           <>
-            <Button size="sm" pill color="blue">
+            <Button
+              as={Link}
+              to={"/dashboard/profile"}
+              size="sm"
+              pill
+              color="blue"
+            >
               {user.name}
             </Button>
             <Button
@@ -74,12 +92,21 @@ const CustomNavbar = () => {
         <Navbar.Toggle />
       </div>
       <Navbar.Collapse>
-        {links.map((link, index) => (
-          <Navbar.Link as={Link} key={index} to={link.link}>
-            {/* <Link to={"/"}>Home</Link> */}
-            {link.name}
-          </Navbar.Link>
-        ))}
+        {!isLogin() &&
+          links.map((link, index) => (
+            <Navbar.Link as={Link} key={index} to={link.link}>
+              {/* <Link to={"/"}>Home</Link> */}
+              {link.name}
+            </Navbar.Link>
+          ))}
+
+        {isLogin() &&
+          loginLinks.map((link, index) => (
+            <Navbar.Link as={Link} key={index} to={link.link}>
+              {/* <Link to={"/"}>Home</Link> */}
+              {link.name}
+            </Navbar.Link>
+          ))}
       </Navbar.Collapse>
     </Navbar>
   );

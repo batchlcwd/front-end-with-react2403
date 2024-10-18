@@ -10,6 +10,10 @@ import { createBrowserRouter } from "react-router-dom";
 import HomePage from "../pages/HomePage.jsx";
 import App from "../App.jsx";
 import { AuthProvider } from "../context/AuthContext.jsx";
+import ProtectedRoute from "../components/ProtectedRoute.jsx";
+import Dashboard from "../pages/protected/Dashboard.jsx";
+import Profile from "../pages/protected/Profile.jsx";
+import DashboardHome from "../pages/protected/DashboardHome.jsx";
 
 const router = createBrowserRouter([
   {
@@ -54,6 +58,21 @@ const router = createBrowserRouter([
         path: "/singup",
         element: <Signup />,
       },
+      {
+        path: "/dashboard",
+        element: <ProtectedRoute element={Dashboard} />,
+        children: [
+          {
+            path: "home",
+            element: <DashboardHome />,
+          },
+          {
+            path: "profile",
+            element: <ProtectedRoute element={Profile} />,
+          },
+        ],
+      },
+      ,
     ],
   },
   ,
