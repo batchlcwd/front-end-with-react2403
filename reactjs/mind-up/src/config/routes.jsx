@@ -14,7 +14,14 @@ import ProtectedRoute from "../components/ProtectedRoute.jsx";
 import Dashboard from "../pages/protected/Dashboard.jsx";
 import Profile from "../pages/protected/Profile.jsx";
 import DashboardHome from "../pages/protected/DashboardHome.jsx";
-
+import AdminProtectedRoute from "../components/AdminProtectedRoute.jsx";
+import AddCategory from "../pages/admin/AddCategory.jsx";
+import AdminDashboard from "../pages/admin/AdminDashboard.jsx";
+import { ROLE_ADMIN } from "./constants.js";
+import AdminHomePage from "../pages/admin/HomePage.jsx";
+import AllCourses from "../pages/admin/AllCourses.jsx";
+import AllCategories from "../pages/admin/AllCategories.jsx";
+import AddCourse from "../pages/admin/AddCourse.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -72,7 +79,36 @@ const router = createBrowserRouter([
           },
         ],
       },
-      ,
+      {
+        path: "/admin",
+        element: <AdminProtectedRoute element={AdminDashboard} />,
+        children: [
+          {
+            path: "home",
+            element: <AdminHomePage />,
+          },
+          {
+            path: "add-category",
+            element: <AddCategory />,
+          },
+          {
+            path: "courses",
+            element: <AllCourses />,
+          },
+          {
+            path: "categories",
+            element: <AllCategories />,
+          },
+          {
+            path: "add-course",
+            element: <AddCourse />,
+          },
+          {
+            path: "add-category",
+            element: <AddCategory />,
+          },
+        ],
+      },
     ],
   },
   ,

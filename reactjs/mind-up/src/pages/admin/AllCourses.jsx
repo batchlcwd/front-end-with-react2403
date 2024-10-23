@@ -1,15 +1,15 @@
 import React from "react";
 import { Helmet } from "react-helmet";
 
-const About = () => {
+const AllCourses = () => {
   return (
     <div>
       <Helmet>
-        <title>About | Mindup</title>
+        <title>All Courses</title>
       </Helmet>
-      <div>About</div>
+      <div>AllCourses</div>
     </div>
   );
 };
 
-export default About;
+export default AllCourses;

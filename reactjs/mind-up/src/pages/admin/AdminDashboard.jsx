@@ -1,4 +1,5 @@
 import React from "react";
+import { Link, Outlet } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 
 import { Button, Drawer, Sidebar, TextInput } from "flowbite-react";
@@ -14,16 +15,18 @@ import {
   HiShoppingBag,
   HiUsers,
 } from "react-icons/hi";
-import { Link, Outlet } from "react-router-dom";
-import { convertRoleObjectToArray } from "../../helpers/helper";
-import { ROLE_ADMIN } from "../../config/constants";
-const Dashboard = () => {
+import { TbVideoPlus } from "react-icons/tb";
+import { FaBorderAll } from "react-icons/fa6";
+import { IoMdAddCircle } from "react-icons/io";
+import { IoAddCircle } from "react-icons/io5";
+
+const AdminDashboard = () => {
   const [isOpen, setIsOpen] = useState(true);
 
   const handleClose = () => setIsOpen(false);
   const { user, logout } = useAuth();
   return (
-    <>
+    <div>
       <div className="">
         {/* content area */}
         <div className={isOpen ? "pl-80" : ""}>
@@ -37,7 +40,7 @@ const Dashboard = () => {
           open={isOpen}
           onClose={handleClose}
         >
-          <Drawer.Header title="USER DASHBOARD" titleIcon={() => <></>} />
+          <Drawer.Header title="Admin Menu" titleIcon={() => <></>} />
           <Drawer.Items>
             <Sidebar
               aria-label="Sidebar with multi-level dropdown example"
@@ -58,7 +61,7 @@ const Dashboard = () => {
                     <Sidebar.ItemGroup>
                       <Sidebar.Item
                         as={Link}
-                        to={"/dashboard/home"}
+                        to={"/admin/home"}
                         icon={HiChartPie}
                       >
                         Dashboard
@@ -70,34 +73,53 @@ const Dashboard = () => {
                       >
                         Profile
                       </Sidebar.Item>
-                      <Sidebar.Item href="/users/list" icon={HiUsers}>
-                        My Courses
+                      <Sidebar.Item
+                        as={Link}
+                        to={"/admin/courses"}
+                        icon={HiUsers}
+                      >
+                        All Courses
                       </Sidebar.Item>
                       <Sidebar.Item
-                        href="/authentication/sign-in"
+                        as={Link}
+                        to={"/admin/categories"}
                         icon={HiLogin}
                       >
-                        Store
+                        Categories
                       </Sidebar.Item>
                       <Sidebar.Item
-                        href="/authentication/sign-up"
+                        as={Link}
+                        to={"/admin/add-course"}
                         icon={HiPencil}
                       >
-                        Invoices
+                        Add Course
+                      </Sidebar.Item>
+                      <Sidebar.Item
+                        as={Link}
+                        to={"/admin/add-category"}
+                        icon={IoAddCircle}
+                      >
+                        Add Category
                       </Sidebar.Item>
                     </Sidebar.ItemGroup>
                     <Sidebar.ItemGroup>
                       <Sidebar.Item
                         href="https://github.com/themesberg/flowbite-react/"
-                        icon={HiClipboard}
+                        icon={TbVideoPlus}
                       >
-                        Favorite
+                        Upload Videos
                       </Sidebar.Item>
                       <Sidebar.Item
                         href="https://flowbite-react.com/"
                         icon={HiCollection}
                       >
-                        Feedback
+                        Orders
+                      </Sidebar.Item>
+                      <Sidebar.Item
+                        href="https://flowbite-react.com/"
+                        icon={FaBorderAll}
+                      >
+                        Users
                       </Sidebar.Item>
                       <Sidebar.Item
                         icon={HiInformationCircle}
@@ -107,20 +129,6 @@ const Dashboard = () => {
                       >
                         Logout
                       </Sidebar.Item>
-
-                      {convertRoleObjectToArray(user.roles).includes(
-                        ROLE_ADMIN
-                      ) ? (
-                        <Sidebar.Item
-                          icon={HiInformationCircle}
-                          as={Link}
-                          to="/admin/home"
-                        >
-                          Admin Dashboard
-                        </Sidebar.Item>
-                      ) : (
-                        ""
-                      )}
                     </Sidebar.ItemGroup>
                   </Sidebar.Items>
                 </div>
@@ -129,8 +137,8 @@ const Dashboard = () => {
           </Drawer.Items>
         </Drawer>
       </div>
-    </>
+    </div>
   );
 };
 
-export default Dashboard;
+export default AdminDashboard;

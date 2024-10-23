@@ -11,6 +11,7 @@ import TestimonialsSection from "./components/home/TestimonialSection";
 import BenefitsSection from "./components/home/BenifitsSection";
 import FAQSection from "./components/home/FAQSection";
 import Footer from "./components/Footer";
+import { Helmet } from "react-helmet";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -18,6 +19,9 @@ function App() {
   return (
     <>
       <div>
+        <Helmet>
+          <title>Learning Application | Mindup</title>
+        </Helmet>
         <HeroSection />
         <FeaturesSection />
         <CoursesSection />
