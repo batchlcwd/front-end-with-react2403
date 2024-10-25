@@ -3,7 +3,10 @@ import { Navbar, Button, DarkThemeToggle } from "flowbite-react";
 import logo from "../assets/study.png";
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import { useSelector } from "react-redux";
 const CustomNavbar = () => {
+  const count = useSelector((state) => state.counter.count);
+
   const { isLogin, login, logout, user } = useAuth();
 
   const [loginLinks, setLoginLinks] = useState([
@@ -60,6 +63,11 @@ const CustomNavbar = () => {
             <Link to={"/singup"}>
               <Button size="sm" pill color="purple">
                 Signup
+              </Button>
+            </Link>
+            <Link to={"/singup"}>
+              <Button size="sm" pill color="purple">
+                Count : {count}
               </Button>
             </Link>
           </>

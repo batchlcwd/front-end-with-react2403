@@ -22,13 +22,17 @@ import AdminHomePage from "../pages/admin/HomePage.jsx";
 import AllCourses from "../pages/admin/AllCourses.jsx";
 import AllCategories from "../pages/admin/AllCategories.jsx";
 import AddCourse from "../pages/admin/AddCourse.jsx";
+import { Provider } from "react-redux";
+import store from "../redux/store";
 const router = createBrowserRouter([
   {
     path: "/",
     element: (
-      <AuthProvider>
-        <HomePage />
-      </AuthProvider>
+      <Provider store={store}>
+        <AuthProvider>
+          <HomePage />
+        </AuthProvider>
+      </Provider>
     ),
     errorElement: <ErrorPage />,
     children: [
