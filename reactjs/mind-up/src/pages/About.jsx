@@ -1,14 +1,22 @@
 import { Button } from "flowbite-react";
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { Helmet } from "react-helmet";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  increaseCount,
-  decreaseCount,
-  resetCount,
-  setCount,
-} from "../redux/actions/counterAction";
-import { addNotification } from "../redux/actions/notifyAction";
+  increment,
+  decrement,
+  incrementByAmount,
+  resetCounter,
+} from "../redux/slice/counterSlice";
+// import { addNotification } from "../redux/actions/notifyAction";
+import { addNotification, getTodoById } from "../redux/slice/notifySlice";
+// import {
+//   increaseCount,
+//   decreaseCount,
+//   resetCount,
+//   setCount,
+// } from "../redux/actions/counterAction";
+// import { addNotification } from "../redux/actions/notifyAction";
 const About = () => {
   const counterRef = useRef(null);
   const notifyRef = useRef(null);
@@ -19,7 +27,14 @@ const About = () => {
     return state.counter.count;
   });
 
-  const notifications = useSelector((state) => state.notify.notifications);
+  const { notifications, loading, error } = useSelector(
+    (state) => state.notify
+  );
+
+  useEffect(() => {
+    dispach(getTodoById(1));
+    console.log("getting todo");
+  }, [dispach]);
 
   return (
     <div>
@@ -33,14 +48,14 @@ const About = () => {
           <Button
             color="blue"
             onClick={() => {
-              dispach(increaseCount());
+              dispach(increment());
             }}
           >
             Increase
           </Button>
           <Button
             onClick={() => {
-              dispach(decreaseCount());
+              dispach(decrement());
             }}
             color="cyan"
           >
@@ -48,7 +63,7 @@ const About = () => {
           </Button>
           <Button
             onClick={() => {
-              dispach(resetCount());
+              dispach(resetCounter());
             }}
             color="dark"
           >
@@ -65,7 +80,7 @@ const About = () => {
           <Button
             onClick={() => {
               console.log(counterRef.current.value);
-              dispach(setCount(counterRef.current.value));
+              dispach(incrementByAmount(counterRef.current.value));
             }}
             color="failure"
           >
@@ -82,7 +97,14 @@ const About = () => {
           <Button
             onClick={() => {
               console.log(notifyRef.current.value);
-              dispach(addNotification(notifyRef.current.value));
+              dispach(
+                addNotification({
+                  title: notifyRef.current.value,
+                  id: "" + Math.random() * 1000,
+                  userId: "user",
+                  completed: true,
+                })
+              );
               notifyRef.current.value = "";
               notifyRef.current.focus();
             }}
@@ -94,15 +116,18 @@ const About = () => {
       </div>
 
       <div className="mt-5">
+        {error}
         <h1 className="text-center text-5xl">
           {" "}
           Notifications : {notifications.length}
         </h1>
 
+        {loading && <h1 className="text-4xl text-center">Loading notifications</h1>}
+
         {notifications.map((notification, index) => {
           return (
             <h1 className="text-center text-3xl font-bold" key={index}>
-              {notification}
+              {notification.title}
             </h1>
           );
         })}
