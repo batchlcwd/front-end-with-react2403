@@ -25,6 +25,7 @@ import AddCourse from "../pages/admin/AddCourse.jsx";
 import { Provider } from "react-redux";
 import store from "../redux/store";
 import Hooks from "../pages/Hooks.jsx";
+import Performance from "../pages/Performance.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -119,6 +120,10 @@ const router = createBrowserRouter([
   {
     path: "/hooks",
     element: <Hooks />,
+  },
+  {
+    path: "/performance-hook",
+    element: <Performance />,
   },
 ]);
 

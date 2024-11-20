@@ -35,7 +35,7 @@ const AdminDashboard = () => {
           </div>
         </div>
         <Drawer
-          className="mt-14"
+          className="mt-14 "
           backdrop={false}
           open={isOpen}
           onClose={handleClose}

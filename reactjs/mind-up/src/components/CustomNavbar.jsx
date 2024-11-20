@@ -40,7 +40,7 @@ const CustomNavbar = () => {
   ]);
 
   return (
-    <Navbar className="shadow ">
+    <Navbar className="shadow  fixed w-full  z-50">
       <Navbar.Brand href="https://flowbite-react.com">
         <img
           src={logo}

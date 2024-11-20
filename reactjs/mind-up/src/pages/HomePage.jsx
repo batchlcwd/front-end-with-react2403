@@ -9,7 +9,7 @@ const HomePage = () => {
       <Toaster />
       <CustomNavbar />
 
-      <div>
+      <div className=" pt-16">
         <Outlet />
       </div>
     </div>

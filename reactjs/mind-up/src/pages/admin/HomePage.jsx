@@ -7,7 +7,9 @@ const HomePage = () => {
       <Helmet>
         <title>Admin Dashboard | Mindup</title>
       </Helmet>
-      <h1 className="text-center text-4xl">Welcome to Admin Dashboard</h1>
+      <div className="h-screen flex justify-center items-center">
+        <h1 className="text-center text-4xl">Welcome to Admin Dashboard</h1>
+      </div>
     </>
   );
 };
