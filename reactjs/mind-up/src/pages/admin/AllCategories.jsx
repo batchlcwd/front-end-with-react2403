@@ -22,11 +22,21 @@ const AllCategories = () => {
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm();
+    setValue,
+  } = useForm({ mode: "onBlur" });
+
   //first time execution
   useEffect(() => {
     loadAllCategories();
   }, []);
+
+  //set the value to update form
+  useEffect(() => {
+    if (categoryToUpdate) {
+      setValue("title", categoryToUpdate.title);
+      setValue("desc", categoryToUpdate.desc);
+    }
+  }, [categoryToUpdate]);
 
   async function loadAllCategories() {
     const categoryResponse = await getAllCategories(1000);
@@ -94,7 +104,6 @@ const AllCategories = () => {
                   </label>
                   <div className="relative">
                     <input
-                      defaultValue={categoryToUpdate?.title}
                       {...register("title", {
                         required: "Title is Required !",
                         onChange: (e) => {
@@ -130,7 +139,6 @@ const AllCategories = () => {
                       console.log(e.target.value);
                     }}
                     name="desc"
-                    defaultValue={categoryToUpdate?.desc}
                     {...register("desc", {
                       required: "Description is Required !",
                       onChange: (e) => {

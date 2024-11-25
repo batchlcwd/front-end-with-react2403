@@ -1,5 +1,5 @@
-import React from "react";
-import { Link, Outlet } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link, Outlet, useLocation } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 
 import { Button, Drawer, Sidebar, TextInput } from "flowbite-react";
@@ -16,21 +16,51 @@ import {
   HiUsers,
 } from "react-icons/hi";
 import { TbVideoPlus } from "react-icons/tb";
-import { FaBorderAll } from "react-icons/fa6";
+import { FaBorderAll, FaMarsAndVenus } from "react-icons/fa6";
 import { IoMdAddCircle } from "react-icons/io";
 import { IoAddCircle } from "react-icons/io5";
+import { TiThMenu } from "react-icons/ti";
 
 const AdminDashboard = () => {
+  const location = useLocation();
+
   const [isOpen, setIsOpen] = useState(true);
 
   const handleClose = () => setIsOpen(false);
   const { user, logout } = useAuth();
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    window.addEventListener("resize", () => {
+      if (window.innerWidth < 720) {
+        setIsMobile(true);
+      } else {
+        setIsMobile(false);
+      }
+    });
+  });
+
+  useEffect(() => {
+    if (isMobile) {
+      setIsOpen(false);
+    }
+  }, [isMobile]);
+
   return (
     <div>
       <div className="">
         {/* content area */}
         <div className={isOpen ? "pl-80" : ""}>
           <div className="p-4">
+            {!isOpen && (
+              <TiThMenu
+                size={30}
+                onClick={() => {
+                  setIsOpen(true);
+                }}
+                className="cursor-pointer"
+              />
+            )}
             <Outlet />
           </div>
         </div>
@@ -60,6 +90,7 @@ const AdminDashboard = () => {
                   <Sidebar.Items>
                     <Sidebar.ItemGroup>
                       <Sidebar.Item
+                        active={location.pathname === "/admin/home"}
                         as={Link}
                         to={"/admin/home"}
                         icon={HiChartPie}
@@ -70,33 +101,38 @@ const AdminDashboard = () => {
                         as={Link}
                         to={"/dashboard/profile"}
                         icon={HiShoppingBag}
+                        active={location.pathname === "/dashboard/profile"}
                       >
                         Profile
                       </Sidebar.Item>
                       <Sidebar.Item
                         as={Link}
                         to={"/admin/courses"}
+                        active={location.pathname === "/admin/courses"}
                         icon={HiUsers}
                       >
                         All Courses
                       </Sidebar.Item>
                       <Sidebar.Item
                         as={Link}
-                        to={"/admin/categories"}
-                        icon={HiLogin}
-                      >
-                        Categories
-                      </Sidebar.Item>
-                      <Sidebar.Item
-                        as={Link}
                         to={"/admin/add-course"}
+                        active={location.pathname === "/admin/add-course"}
                         icon={HiPencil}
                       >
                         Add Course
                       </Sidebar.Item>
                       <Sidebar.Item
                         as={Link}
+                        to={"/admin/categories"}
+                        active={location.pathname === "/admin/categories"}
+                        icon={HiLogin}
+                      >
+                        Categories
+                      </Sidebar.Item>
+                      <Sidebar.Item
+                        as={Link}
                         to={"/admin/add-category"}
+                        active={location.pathname === "/admin/add-category"}
                         icon={IoAddCircle}
                       >
                         Add Category
@@ -104,8 +140,9 @@ const AdminDashboard = () => {
                     </Sidebar.ItemGroup>
                     <Sidebar.ItemGroup>
                       <Sidebar.Item
-                        href="https://github.com/themesberg/flowbite-react/"
+                        href="/upload-video"
                         icon={TbVideoPlus}
+                        active={location.pathname === "/admin/upload-video"}
                       >
                         Upload Videos
                       </Sidebar.Item>
