@@ -140,7 +140,8 @@ const AdminDashboard = () => {
                     </Sidebar.ItemGroup>
                     <Sidebar.ItemGroup>
                       <Sidebar.Item
-                        href="/upload-video"
+                        as={Link}
+                        to={"/admin/upload-video"}
                         icon={TbVideoPlus}
                         active={location.pathname === "/admin/upload-video"}
                       >

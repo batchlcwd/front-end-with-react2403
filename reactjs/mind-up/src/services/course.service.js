@@ -1,4 +1,4 @@
-import { privateAxios } from "../config/axios.config";
+import { privateAxios, publicAxios } from "../config/axios.config";
 
 export const addCourse = async (course) => {
   const response = await privateAxios.post("/courses", course);
@@ -11,16 +11,15 @@ export const getAllCourses = async (
   size = 50,
   sort = "createdDate,desc"
 ) => {
-  const response = await privateAxios.get(
+  const response = await publicAxios.get(
     `/courses?page=${page}&size=${size}&sort=${sort}`
   );
   return response.data;
 };
 
-
 //single course view
 export const getCourseById = async (id) => {
-  const response = await privateAxios.get(`/courses/${id}`);
+  const response = await publicAxios.get(`/courses/${id}`);
   return response.data;
 };
 

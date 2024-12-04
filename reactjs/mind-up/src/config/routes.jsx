@@ -26,6 +26,8 @@ import { Provider } from "react-redux";
 import store from "../redux/store";
 import Hooks from "../pages/Hooks.jsx";
 import Performance from "../pages/Performance.jsx";
+import UploadVideo from "../pages/admin/UploadVideo.jsx";
+import SingleViewCourse from "../pages/SingleViewCourse.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -62,6 +64,10 @@ const router = createBrowserRouter([
       {
         path: "/courses",
         element: <Courses />,
+      },
+      {
+        path: "/courses/:courseId",
+        element: <SingleViewCourse />,
       },
       {
         path: "/login",
@@ -112,6 +118,10 @@ const router = createBrowserRouter([
           {
             path: "add-category",
             element: <AddCategory />,
+          },
+          {
+            path: "upload-video",
+            element: <UploadVideo />,
           },
         ],
       },

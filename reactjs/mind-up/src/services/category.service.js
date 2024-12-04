@@ -1,4 +1,4 @@
-import { privateAxios } from "../config/axios.config";
+import { privateAxios, publicAxios } from "../config/axios.config";
 
 //create category api call
 export const createCategory = async (category) => {
@@ -8,7 +8,7 @@ export const createCategory = async (category) => {
 
 //get all categories api call
 export const getAllCategories = async (pageSize = 50, pageNumber = 0) => {
-  const result = await privateAxios.get(
+  const result = await publicAxios.get(
     `/categories?pageSize=${pageSize}&sortBy=addedDate&sortDir=desc`
   );
   return result.data;
