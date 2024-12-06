@@ -15,7 +15,9 @@ const AddCourseComp = () => {
     formState: { errors },
     reset,
   } = useForm();
+
   const [longDesc, setLongDesc] = useState("");
+  
   const validateLongDesc = () => {
     if (!longDesc || longDesc.trim() === "<p><br></p>") {
       setError("longDesc", {

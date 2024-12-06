@@ -58,3 +58,14 @@ export const uploadCoursebanner = async (courseId, banner) => {
   );
   return response.data;
 };
+
+//order course
+
+export const createOrder = async (order) => {
+  const response = await privateAxios.post("/orders", order);
+  return response.data;
+};
+export const verifyPaymentApi = async (paymentDetail) => {
+  const response = await privateAxios.post("/orders/verify", paymentDetail);
+  return response.data;
+};

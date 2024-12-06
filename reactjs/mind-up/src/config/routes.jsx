@@ -29,6 +29,7 @@ import Performance from "../pages/Performance.jsx";
 import UploadVideo from "../pages/admin/UploadVideo.jsx";
 import SingleViewCourse from "../pages/SingleViewCourse.jsx";
 import UpdateCourseComp from "../pages/admin/UpdateCourse.jsx";
+import Order from "../components/Guest/Order.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -70,6 +71,7 @@ const router = createBrowserRouter([
         path: "/courses/:courseId",
         element: <SingleViewCourse />,
       },
+
       {
         path: "/login",
         element: <Login />,
@@ -89,6 +91,10 @@ const router = createBrowserRouter([
           {
             path: "profile",
             element: <ProtectedRoute element={Profile} />,
+          },
+          {
+            path: "order/:courseId",
+            element: <Order />,
           },
         ],
       },

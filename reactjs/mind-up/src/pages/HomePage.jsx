@@ -6,7 +6,7 @@ import { Toaster } from "react-hot-toast";
 const HomePage = () => {
   return (
     <div>
-      <Toaster position="bottom-center" />
+      <Toaster position="top-center" />
       <CustomNavbar />
 
       <div className=" pt-16">

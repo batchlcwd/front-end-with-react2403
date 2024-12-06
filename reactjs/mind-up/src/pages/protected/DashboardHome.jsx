@@ -1,13 +1,17 @@
 import React from "react";
 import { Helmet } from "react-helmet";
-
+import Store from "../../components/Guest/Store";
+import Categories from "../../components/Guest/Categories";
 const DashboardHome = () => {
   return (
     <div>
       <Helmet>
         <title>Dashboard Home</title>
       </Helmet>
-      <h1 className="text-5xl">Dashboard Home</h1>
+      <div>
+        <Categories />
+        <Store />
+      </div>
     </div>
   );
 };

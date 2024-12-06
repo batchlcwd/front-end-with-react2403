@@ -3,8 +3,24 @@ import ImageWithFallback from "./ImageWithFallback";
 import HtmlRenderer from "./HtmlRenderer";
 import { getPriceAfterDiscount } from "./Guest/CourseView";
 import { timeAgo } from "../helpers/TimeHelper";
+import { Button } from "flowbite-react";
+import { useAuth } from "../context/AuthContext";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const CourseView = ({ courseToDisplay, userView = true }) => {
+  const { isLogin } = useAuth();
+  const navigate = useNavigate();
+
+  function handBuyNow() {
+    if (isLogin()) {
+      navigate(`/dashboard/order/${courseToDisplay.id}`);
+    } else {
+      toast.error("Please login to buy the course ! ");
+      navigate("/login");
+    }
+  }
+
   return (
     <div className="flex flex-col gap-4 justify-center items-center">
       <ImageWithFallback
@@ -16,9 +32,29 @@ const CourseView = ({ courseToDisplay, userView = true }) => {
         className="w-full rounded max-h-96 object-cover"
       />
 
-      <div className="w-full flex flex-col gap-3 p-4">
-        <h1 className="font-bold text-xl">{courseToDisplay?.title}</h1>
-        <p>{courseToDisplay?.shortDesc}</p>
+      {/* user view */}
+
+      <div className="w-full flex flex-col gap-3 p-4 ">
+        {!userView && (
+          <div className="">
+            <h1 className="font-bold text-xl">{courseToDisplay?.title}</h1>
+            <p>{courseToDisplay?.shortDesc}</p>
+          </div>
+        )}
+
+        {userView && (
+          <div className="flex flex-col md:flex-row justify-between gap-3">
+            <div className="course_title_info  w-full md:w-2/3 ">
+              <h1 className="font-bold text-xl">{courseToDisplay?.title}</h1>
+              <p>{courseToDisplay?.shortDesc}</p>
+            </div>
+            <div className="buy_now_button   w-fit border-red-500">
+              <Button onClick={handBuyNow} color="success">
+                Buy Now
+              </Button>
+            </div>
+          </div>
+        )}
 
         <p className="p-10 rounded-lg bg-gray-200 dark:bg-gray-600 ">
           <h1 className="text-2xl font-bold mb-4 text-gray-800 dark:text-gray-100">
@@ -91,6 +127,14 @@ const CourseView = ({ courseToDisplay, userView = true }) => {
               )}
             </p>
           </div>
+          {userView && (
+            <div className="flex gap-2 justify-center mt-5">
+              <Button onClick={handBuyNow} color="success">
+                Buy Now
+              </Button>
+              <Button color="indigo">Store Page</Button>
+            </div>
+          )}
         </div>
 
         {/* course information apne style mein design karoge */}
