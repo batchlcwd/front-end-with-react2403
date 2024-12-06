@@ -2,15 +2,23 @@ import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { Pagination, Button, Modal } from "flowbite-react";
 import { Checkbox, Table } from "flowbite-react";
-import { deleteCourse, getAllCourses } from "../../services/course.service";
+import {
+  deleteCourse,
+  getAllCourses,
+  getLiveCourses,
+} from "../../services/course.service";
 import { timeAgo } from "../../helpers/TimeHelper";
 import { PAGE_SIZE } from "../../helpers/constants";
 import CustomConfirmModal from "../../components/CustomConfirmModal";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
 import toast from "react-hot-toast";
+
+import { Link, useNavigate } from "react-router-dom";
+import CourseView from "../../components/CourseView";
 const AllCourses = () => {
   const [courseData, setCourseData] = useState(null);
-  const [currentPage, setCurrentPage] = useState(1);
+
+  const navigate = useNavigate();
 
   async function getCourses(page, size, sort) {
     try {
@@ -57,6 +65,10 @@ const AllCourses = () => {
     }
   }
 
+  function handleUpdateButtonFromShowModal() {
+    navigate(`/admin/courses/${courseToDisplay?.id}`);
+  }
+
   //show course details
   const [openCourseModal, setOpenCourseModal] = useState(false);
   const [courseToDisplay, setCourseToDisplay] = useState(null);
@@ -101,12 +113,12 @@ const AllCourses = () => {
                       <Checkbox defaultChecked={true} />
                     </Table.Cell> */}
                     <Table.Cell>
-                      <a
-                        href="#"
+                      <Link
+                        to={`/admin/courses/${course.id}`}
                         className="font-medium text-cyan-600 hover:underline dark:text-cyan-500"
                       >
                         Edit
-                      </a>
+                      </Link>
                       <a
                         href="#"
                         className="ml-3 font-medium text-cyan-600 hover:underline dark:text-cyan-500"
@@ -172,28 +184,18 @@ const AllCourses = () => {
       <CustomConfirmModal
         isOpen={openCourseModal}
         heading={`Course Information : ${courseToDisplay?.title} `}
-        showConfirmButton={false}
+        confirmButtonText="Update"
+        showConfirmButton={true}
+        confirmButtonClicked={handleUpdateButtonFromShowModal}
+        className={"w-full mx-auto"}
+        size={"6xl"}
         declineButtonText="Close"
         closeModal={() => {
           setOpenCourseModal(false);
           setCourseToDisplay(null);
         }}
       >
-        <div className="flex flex-col gap-4 justify-center items-center">
-          <img
-            src={courseToDisplay?.bannerUrl}
-            alt=""
-            className="w-full rounded h-80 object-cover"
-          />
-          <div className=" flex flex-col gap-3 p-4">
-            <h1 className="font-bold text-xl">{courseToDisplay?.title}</h1>
-            <p>{courseToDisplay?.shortDesc}</p>
-
-            <p>{courseToDisplay?.long_description}</p>
-
-            {/* course information apne style mein design karoge */}
-          </div>
-        </div>
+        <CourseView courseToDisplay={courseToDisplay} userView={false} />
       </CustomConfirmModal>
     </div>
   );

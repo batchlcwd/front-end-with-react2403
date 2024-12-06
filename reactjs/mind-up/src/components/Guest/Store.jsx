@@ -1,18 +1,27 @@
 import React, { useEffect, useState } from "react";
-import { getAllCourses } from "../../services/course.service";
+import { getAllCourses, getLiveCourses } from "../../services/course.service";
 import CourseView from "./CourseView";
 import { Spinner } from "flowbite-react";
+import toast from "react-hot-toast";
 
 const Store = () => {
   const [courseData, setCourseData] = useState(null);
   const [loading, setLoading] = useState(false);
 
   async function loadAllCourses() {
-    setLoading(true);
-    const courseData = await getAllCourses();
-    console.log(courseData);
-    setCourseData(courseData);
-    setLoading(false);
+    try {
+      setLoading(true);
+      const courseData = await getLiveCourses();
+      console.log(courseData);
+      setCourseData(courseData);
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+      toast.error("Error in loading courses");
+      console.log("Error: ", error);
+    } finally {
+      setLoading(false);
+    }
   }
 
   useEffect(() => {

@@ -10,6 +10,8 @@ const CustomConfirmModal = ({
   showConfirmButton = true,
   showDeclineButton = true,
   children,
+  className = "",
+  size = "xl",
 }) => {
   const [openModal, setOpenModal] = useState(false);
   useEffect(() => {
@@ -19,7 +21,8 @@ const CustomConfirmModal = ({
   return (
     <>
       <Modal
-        className="max-h-screen"
+        size={size}
+        className={`${className} max-h-screen `}
         show={openModal}
         onClose={() => closeModal(false)}
       >

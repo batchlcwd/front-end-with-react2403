@@ -28,6 +28,7 @@ import Hooks from "../pages/Hooks.jsx";
 import Performance from "../pages/Performance.jsx";
 import UploadVideo from "../pages/admin/UploadVideo.jsx";
 import SingleViewCourse from "../pages/SingleViewCourse.jsx";
+import UpdateCourseComp from "../pages/admin/UpdateCourse.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -106,6 +107,10 @@ const router = createBrowserRouter([
           {
             path: "courses",
             element: <AllCourses />,
+          },
+          {
+            path: "courses/:courseId",
+            element: <UpdateCourseComp />,
           },
           {
             path: "categories",

@@ -2,11 +2,10 @@ import { Badge, Button } from "flowbite-react";
 import React from "react";
 import { Link } from "react-router-dom";
 
+export function getPriceAfterDiscount(price, discount) {
+  return (price - (price * discount) / 100).toFixed(0);
+}
 const CourseView = ({ course }) => {
-  function getPriceAfterDiscount(price, discount) {
-    return (price - (price * discount) / 100).toFixed(0);
-  }
-
   return (
     <div className="w-full hover:bg-gray-300 cursor-pointer dark:hover:bg-gray-600  md:w-[calc(50%-12px)]  lg:w-[calc(33%-12px)]  xl:w-[calc(25%-12px)]   flex flex-col gap-3 bg-gray-200 dark:bg-gray-700 rounded-lg">
       <div className="image_container">
@@ -21,7 +20,7 @@ const CourseView = ({ course }) => {
         <p>{course.shortDesc}</p>
         <div className="flex  gap-2 items-center">
           <p className="font-bold text-gray-400 text-xl line-through">
-            ₹ {course.price}
+               {course.price}
           </p>
           <p>
             <Badge color="info">{course.discount}% Off</Badge>

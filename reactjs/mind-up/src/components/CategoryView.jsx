@@ -4,7 +4,7 @@ import { HiOutlineExclamationCircle } from "react-icons/hi";
 import { Button, Modal, ToastToggle } from "flowbite-react";
 const CategoryView = ({ cat, deleteCategory, openEditModel }) => {
   const defaultBanner =
-    "https://media.istockphoto.com/id/1396814518/vector/image-coming-soon-no-photo-no-thumbnail-image-available-vector-illustration.jpg?s=612x612&w=0&k=20&c=hnh2OZgQGhf0b46-J2z7aHbIWwq8HNlSDaNp2wn_iko=";
+    "https://i.pinimg.com/736x/0b/fa/1d/0bfa1dcd820bbfd821602e04f33cd57e.jpg";
 
   console.log(cat);
 
@@ -45,20 +45,21 @@ const CategoryView = ({ cat, deleteCategory, openEditModel }) => {
     );
   }
   return (
-    <div className="shadow-md  dark:hover:bg-gray-700 dark:border-none border  dark:bg-slate-700 hover:bg-gray-200  cursor-pointer flex flex-col  items-start justify-between   rounded  gap-3 mt-2 w-full lg:w-1/4">
-      <div className=" w-full   flex  flex-col justify-start">
+    <div className="shadow-md w-full lg:w-[calc(25%-16px)]   dark:hover:bg-gray-700 dark:border-none border  dark:bg-slate-700 hover:bg-gray-200  cursor-pointer flex flex-col  items-start justify-between   rounded  mt-2  ">
+      <div className="">
         <img
           src={defaultBanner}
-          className="w-full h-[250px] object-cover"
+          className="w-full max-h-36  object-cover mx-auto"
           alt=""
         />
-        <div className="p-4 flex flex-col gap-3 ">
-          <h1 className="text-2xl">{cat.title}</h1>
+        <div className="p-4  flex flex-col gap-3 ">
+          <h1 className="font-semibold text-normal md:text-xl">{cat.title}</h1>
           <p className="overflow-auto">{cat.desc}</p>
         </div>
       </div>
-      <div className="flex p-5 justify-center  w-full  gap-3">
+      <div className="flex   pb-5 justify-center  w-full  gap-3">
         <Button
+          size="sm"
           onClick={() => {
             console.log(cat);
             setConfirmOpenModal(true);

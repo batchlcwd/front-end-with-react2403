@@ -98,7 +98,7 @@ const AllCategories = () => {
                 <div className="mb-4">
                   <label
                     htmlFor="title"
-                    className="block text-sm font-medium mb-2 flex items-center"
+                    className=" text-sm font-medium mb-2 flex items-center"
                   >
                     <FaTag className="mr-2" /> Title
                   </label>
@@ -203,7 +203,7 @@ const AllCategories = () => {
         )}
 
         {/* show all categories */}
-        <div className="flex flex-col lg:flex-row justify-center gap-4 mt-5 flex-wrap">
+        <div className="flex flex-col  w-full lg:w-2/3  mx-auto  lg:flex-row justify-center gap-4 mt-5 flex-wrap">
           {categories.map((cat, item) => (
             <CategoryView
               deleteCategory={deleteCategory}

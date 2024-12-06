@@ -1,3 +1,93 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Custom styles for Quill editor */
+/* Custom styles for Quill editor */
+/* Base styles for Quill editor */
+/* Base styles for Quill editor */
+
+/* Adjust the height of the editor */
+.ql-container {
+  min-height: 200px; /* Default height */
+  max-height: 400px; /* Optional max height */
+  overflow-y: auto;
+}
+
+/* Light Theme */
+html:not(.dark) .ql-container {
+  background-color: #ffffff; /* Light background */
+  color: #1f2937; /* Dark text */
+}
+
+html:not(.dark) .ql-toolbar {
+  background-color: #f9fafb; /* Light toolbar background */
+  border: 1px solid #d1d5db; /* Toolbar border */
+}
+
+html:not(.dark) .ql-toolbar .ql-picker,
+html:not(.dark) .ql-toolbar .ql-stroke,
+html:not(.dark) .ql-toolbar .ql-fill {
+  color: #374151; /* Toolbar icons */
+  stroke: #374151; /* Toolbar icons */
+  fill: #374151; /* Toolbar icons */
+}
+
+html:not(.dark) .ql-toolbar button:hover,
+html:not(.dark) .ql-toolbar button.ql-active {
+  background-color: #e5e7eb; /* Button hover and active state */
+}
+
+/* Dark Theme */
+html.dark .ql-container {
+  background-color: #1e293b; /* Dark background */
+  color: #e2e8f0; /* Light text */
+}
+
+html.dark .ql-editor {
+  color: #e2e8f0; /* Light text in the editor */
+}
+
+html.dark .ql-toolbar {
+  background-color: #334155; /* Dark toolbar background */
+  border: 1px solid #475569; /* Toolbar border */
+}
+
+html.dark .ql-toolbar .ql-picker,
+html.dark .ql-toolbar .ql-stroke,
+html.dark .ql-toolbar .ql-fill {
+  color: #e2e8f0; /* Light toolbar icons */
+  stroke: #e2e8f0; /* Toolbar icons */
+  fill: #e2e8f0; /* Toolbar icons */
+}
+
+html.dark .ql-toolbar button:hover,
+html.dark .ql-toolbar button.ql-active {
+  background-color: #475569; /* Button hover and active state */
+}
+
+/* Shared styles */
+.ql-toolbar .ql-picker-options {
+  border-radius: 4px;
+  margin: 2px 0;
+}
+
+/* Placeholder color for light theme */
+html:not(.dark) .ql-editor::before {
+  color: #9ca3af; /* Light gray placeholder color */
+  font-style: italic; /* Optional: makes the placeholder italic */
+}
+
+/* Placeholder color for dark theme */
+html.dark .ql-editor::before {
+  color: #4b5563; /* Dark gray placeholder color */
+  font-style: italic; /* Optional: makes the placeholder italic */
+}
+.reset-styles {
+  all: unset; /* Resets all inherited styles */
+}
+
+.reset-styles * {
+  all: unset; /* Ensures all children are also reset */
+  display: revert; /* Resets the display property to its default for each element */
+}

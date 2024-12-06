@@ -6,12 +6,24 @@ export const addCourse = async (course) => {
 };
 
 // get all courses
-export const getAllCourses = async (
+export const getLiveCourses = async (
   page = 0,
   size = 50,
   sort = "createdDate,desc"
 ) => {
   const response = await publicAxios.get(
+    `/courses/live?page=${page}&size=${size}&sort=${sort}`
+  );
+  return response.data;
+};
+
+// get all courses
+export const getAllCourses = async (
+  page = 0,
+  size = 50,
+  sort = "createdDate,desc"
+) => {
+  const response = await privateAxios.get(
     `/courses?page=${page}&size=${size}&sort=${sort}`
   );
   return response.data;
