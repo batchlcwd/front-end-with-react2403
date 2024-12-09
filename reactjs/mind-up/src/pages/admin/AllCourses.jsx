@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
-import { Pagination, Button, Modal } from "flowbite-react";
+import { Pagination, Button, Modal, List, Avatar } from "flowbite-react";
 import { Checkbox, Table } from "flowbite-react";
 import {
   deleteCourse,
@@ -15,6 +15,10 @@ import toast from "react-hot-toast";
 
 import { Link, useNavigate } from "react-router-dom";
 import CourseView from "../../components/CourseView";
+import { getVideoOfCourse } from "../../services/video.service";
+import { MdDelete, MdPlayCircle, MdVideoFile } from "react-icons/md";
+import VideoPlayer from "../../components/VideoPlayer";
+import { baseUrl } from "../../config/axios.config";
 const AllCourses = () => {
   const [courseData, setCourseData] = useState(null);
 
@@ -73,6 +77,23 @@ const AllCourses = () => {
   const [openCourseModal, setOpenCourseModal] = useState(false);
   const [courseToDisplay, setCourseToDisplay] = useState(null);
 
+  // video of course work
+
+  const [courseVideos, setCourseVideos] = useState([]);
+
+  async function loadCourseVideo(courseId) {
+    const response = await getVideoOfCourse(courseId);
+    setCourseVideos(response);
+    console.log(response);
+  }
+  useEffect(() => {
+    setCourseVideos([]);
+  }, [courseToDisplay]);
+
+  // play videos of course in the modal
+
+  const [videoOfCourseModal, setVideoOfCourseModal] = useState(false);
+  const [videoToPlay, setVideoToPlay] = useState(null);
   return (
     <div>
       <Helmet>
@@ -188,14 +209,95 @@ const AllCourses = () => {
         showConfirmButton={true}
         confirmButtonClicked={handleUpdateButtonFromShowModal}
         className={"w-full mx-auto"}
-        size={"6xl"}
+        size={"8xl"}
         declineButtonText="Close"
         closeModal={() => {
           setOpenCourseModal(false);
           setCourseToDisplay(null);
         }}
       >
-        <CourseView courseToDisplay={courseToDisplay} userView={false} />
+        <div className="grid grid-cols-12 gap-5">
+          <div className="col-span-7">
+            <CourseView courseToDisplay={courseToDisplay} userView={false} />
+          </div>
+
+          <div className="col-span-5  ">
+            {/* videos */}
+            <div className="flex justify-center flex-col items-center space-y-3">
+              <h1>Videos of {courseToDisplay?.title}</h1>
+              <Button
+                onClick={() => {
+                  loadCourseVideo(courseToDisplay?.id);
+                }}
+              >
+                Load Videos
+              </Button>
+
+              <div className="list-container w-full">
+                <List
+                  unstyled
+                  className=" w-full h-screen overflow-auto divide-y divide-gray-200 dark:divide-gray-700"
+                >
+                  {courseVideos.map((video, index) => (
+                    <List.Item
+                      key={index}
+                      className="p-3 rounded-lg  bg-gray-950 sm:pb-4"
+                    >
+                      <div className="flex items-center space-x-4 rtl:space-x-reverse">
+                        <div>
+                          <MdVideoFile size={30} />
+                        </div>
+                        <div className="min-w-0 flex-1">
+                          <p className="truncate text-sm font-medium text-gray-900 dark:text-white">
+                            {video.title}
+                          </p>
+                          <p className="truncate text-sm text-gray-500 dark:text-gray-400">
+                            {video.course.title}
+                          </p>
+                        </div>
+                        <div className="inline-flex gap-2 items-center text-base font-semibold text-gray-900 dark:text-white">
+                          <Button
+                            onClick={() => {
+                              setVideoToPlay(
+                                `${baseUrl}/videos/stream/${video.id}`
+                              );
+                              setVideoOfCourseModal(true);
+                            }}
+                            color="red"
+                            size="sm"
+                            className="rounded-lg"
+                          >
+                            <MdPlayCircle size={20} />
+                          </Button>
+                          <Button
+                            color="purple"
+                            size="sm"
+                            className="rounded-lg"
+                          >
+                            <MdDelete size={20} />
+                          </Button>
+                        </div>
+                      </div>
+                    </List.Item>
+                  ))}
+                </List>
+              </div>
+            </div>
+          </div>
+        </div>
+      </CustomConfirmModal>
+
+      <CustomConfirmModal
+        isOpen={videoOfCourseModal}
+        closeModal={() => {
+          setVideoOfCourseModal(false);
+        }}
+        declineButtonText=""
+        showDeclineButton={false}
+        showConfirmButton={false}
+        size="6xl"
+      >
+        <VideoPlayer videoUrl={videoToPlay} />
       </CustomConfirmModal>
     </div>
   );

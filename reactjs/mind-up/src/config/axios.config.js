@@ -1,7 +1,7 @@
 import axios from "axios";
 import { getUserLoginData } from "../helpers/LocalStorageHelper";
 
-const baseUrl = "http://localhost:8081/api/v1";
+export const baseUrl = "http://localhost:8081/api/v1";
 
 export const publicAxios = axios.create({
   baseURL: baseUrl,

@@ -23,3 +23,8 @@ export const uploadVideo = async (
   });
   return resp.data;
 };
+
+export const getVideoOfCourse = async (courseId) => {
+  const response = await privateAxios.get(`/videos/course/${courseId}`);
+  return response.data;
+};
