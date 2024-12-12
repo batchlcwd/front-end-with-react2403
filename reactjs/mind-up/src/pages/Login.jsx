@@ -3,12 +3,14 @@ import { useForm } from "react-hook-form";
 import { loginUser } from "../services/auth.service";
 import toast from "react-hot-toast";
 import { useAuth } from "../context/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
 const Login = () => {
   const { token, user, login } = useAuth();
 
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.pathname || "/dashboard/home";
   const {
     register,
     handleSubmit,
@@ -25,7 +27,9 @@ const Login = () => {
       console.log(loginData);
       toast.success("Login Success");
       login(loginData.token, loginData.user);
-      navigate("/dashboard/home");
+      console.log(location);
+
+      navigate(from, { replace: true });
     } catch (error) {
       console.log(error);
       toast.error(error.response?.data?.message);

@@ -2,6 +2,7 @@ import React from "react";
 import CustomNavbar from "../components/CustomNavbar";
 import { Outlet } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
+import { AnimatedRoutes } from "../config/routes";
 
 const HomePage = () => {
   return (
@@ -10,7 +11,9 @@ const HomePage = () => {
       <CustomNavbar />
 
       <div className=" pt-16">
-        <Outlet />
+        <AnimatedRoutes>
+          <Outlet />
+        </AnimatedRoutes>
       </div>
     </div>
   );

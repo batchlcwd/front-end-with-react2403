@@ -6,7 +6,7 @@ import Courses from "../pages/Courses.jsx";
 import Login from "../pages/Login.jsx";
 import Signup from "../pages/Signup.jsx";
 import ErrorPage from "../pages/ErrorPage.jsx";
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, Outlet, useLocation } from "react-router-dom";
 import HomePage from "../pages/HomePage.jsx";
 import App from "../App.jsx";
 import { AuthProvider } from "../context/AuthContext.jsx";
@@ -14,10 +14,10 @@ import ProtectedRoute from "../components/ProtectedRoute.jsx";
 import Dashboard from "../pages/protected/Dashboard.jsx";
 import Profile from "../pages/protected/Profile.jsx";
 import DashboardHome from "../pages/protected/DashboardHome.jsx";
+
 import AdminProtectedRoute from "../components/AdminProtectedRoute.jsx";
-import AddCategory from "../pages/admin/AddCategory.jsx";
+
 import AdminDashboard from "../pages/admin/AdminDashboard.jsx";
-import { ROLE_ADMIN } from "./constants.js";
 import AdminHomePage from "../pages/admin/HomePage.jsx";
 import AllCourses from "../pages/admin/AllCourses.jsx";
 import AllCategories from "../pages/admin/AllCategories.jsx";
@@ -30,6 +30,32 @@ import UploadVideo from "../pages/admin/UploadVideo.jsx";
 import SingleViewCourse from "../pages/SingleViewCourse.jsx";
 import UpdateCourseComp from "../pages/admin/UpdateCourse.jsx";
 import Order from "../components/Guest/Order.jsx";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
+import StorePage from "../pages/protected/Store.jsx";
+import MyCourses from "../pages/protected/MyCourses.jsx";
+import Learning from "../pages/protected/Learning.jsx";
+import CategoryCourse from "../pages/protected/CategoryCourse.jsx";
+import React from "react";
+
+const AddCategory = React.lazy(() => import("../pages/admin/AddCategory.jsx"));
+
+export function AnimatedRoutes({ children }) {
+  return (
+    <TransitionGroup>
+      <CSSTransition
+        key={location.pathname} // Ensure unique key for each route
+        classNames="fade" // CSS animation class
+        timeout={300} // Animation duration
+      >
+        <div>
+          {children}
+          {/* Renders the current route's element */}
+        </div>
+      </CSSTransition>
+    </TransitionGroup>
+  );
+}
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -93,6 +119,22 @@ const router = createBrowserRouter([
             element: <ProtectedRoute element={Profile} />,
           },
           {
+            path: "store",
+            element: <StorePage />,
+          },
+          {
+            path: "store/category/:categoryId",
+            element: <CategoryCourse />,
+          },
+          {
+            path: "courses",
+            element: <MyCourses />,
+          },
+          {
+            path: "learning/:courseId",
+            element: <Learning />,
+          },
+          {
             path: "order/:courseId",
             element: <Order />,
           },
@@ -108,7 +150,11 @@ const router = createBrowserRouter([
           },
           {
             path: "add-category",
-            element: <AddCategory />,
+            element: (
+              <React.Suspense fallback={<h1>Loading</h1>}>
+                <AddCategory />,
+              </React.Suspense>
+            ),
           },
           {
             path: "courses",

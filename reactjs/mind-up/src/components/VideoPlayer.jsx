@@ -5,6 +5,8 @@ const VideoPlayer = ({ videoUrl }) => {
   return (
     <div>
       <ReactPlayer
+        config={{ file: { attributes: { controlsList: "nodownload" } } }}
+        onContextMenu={(e) => e.preventDefault()}
         url={videoUrl}
         controls
         playing={false} // Starts paused

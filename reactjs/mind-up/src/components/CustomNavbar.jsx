@@ -65,11 +65,11 @@ const CustomNavbar = () => {
                 Signup
               </Button>
             </Link>
-            <Link to={"/singup"}>
+            {/* <Link to={"/singup"}>
               <Button size="sm" pill color="purple">
                 Count : {count}
               </Button>
-            </Link>
+            </Link> */}
           </>
         )}
 

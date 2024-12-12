@@ -14,21 +14,26 @@ import {
   HiShoppingBag,
   HiUsers,
 } from "react-icons/hi";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useLocation } from "react-router-dom";
 import { convertRoleObjectToArray } from "../../helpers/helper";
 import { ROLE_ADMIN } from "../../config/constants";
+import { AnimatedRoutes } from "../../config/routes";
 const Dashboard = () => {
   const [isOpen, setIsOpen] = useState(true);
 
   const handleClose = () => setIsOpen(false);
   const { user, logout } = useAuth();
+
+  const location = useLocation();
   return (
     <>
       <div className="">
         {/* content area */}
         <div className={isOpen ? "pl-80" : ""}>
           <div className="p-4">
-            <Outlet />
+            <AnimatedRoutes>
+              <Outlet />
+            </AnimatedRoutes>
           </div>
         </div>
         <Drawer
@@ -60,6 +65,7 @@ const Dashboard = () => {
                         as={Link}
                         to={"/dashboard/home"}
                         icon={HiChartPie}
+                        active={location.pathname == "/dashboard/home"}
                       >
                         Dashboard
                       </Sidebar.Item>
@@ -67,14 +73,22 @@ const Dashboard = () => {
                         as={Link}
                         to={"/dashboard/profile"}
                         icon={HiShoppingBag}
+                        active={location.pathname == "/dashboard/profile"}
                       >
                         Profile
                       </Sidebar.Item>
-                      <Sidebar.Item href="/users/list" icon={HiUsers}>
+                      <Sidebar.Item
+                        as={Link}
+                        to={"/dashboard/courses"}
+                        active={location.pathname == "/dashboard/courses"}
+                        icon={HiUsers}
+                      >
                         My Courses
                       </Sidebar.Item>
                       <Sidebar.Item
-                        href="/authentication/sign-in"
+                        as={Link}
+                        to={"/dashboard/store"}
+                        active={location.pathname == "/dashboard/store"}
                         icon={HiLogin}
                       >
                         Store

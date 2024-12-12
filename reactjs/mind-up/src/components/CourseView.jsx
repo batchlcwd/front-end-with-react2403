@@ -6,18 +6,20 @@ import { timeAgo } from "../helpers/TimeHelper";
 import { Button } from "flowbite-react";
 import { useAuth } from "../context/AuthContext";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const CourseView = ({ courseToDisplay, userView = true }) => {
   const { isLogin } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
 
   function handBuyNow() {
     if (isLogin()) {
       navigate(`/dashboard/order/${courseToDisplay.id}`);
     } else {
       toast.error("Please login to buy the course ! ");
-      navigate("/login");
+
+      navigate("/login", { state: location });
     }
   }
 

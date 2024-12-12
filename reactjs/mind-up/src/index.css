@@ -91,3 +91,107 @@ html.dark .ql-editor::before {
   all: unset; /* Ensures all children are also reset */
   display: revert; /* Resets the display property to its default for each element */
 }
+/* Entering */
+.fade-enter {
+  opacity: 0;
+}
+.fade-enter-active {
+  opacity: 1;
+  transition: opacity 300ms ease-in;
+}
+
+/* Exiting */
+.fade-exit {
+  opacity: 1;
+}
+.fade-exit-active {
+  opacity: 0;
+  transition: opacity 300ms ease-out;
+}
+
+/* Entering */
+.rotate-enter {
+  opacity: 0;
+  transform: rotateY(-90deg);
+}
+.rotate-enter-active {
+  opacity: 1;
+  transform: rotateY(0);
+  transition: opacity 400ms ease, transform 400ms ease;
+}
+
+/* Exiting */
+.rotate-exit {
+  opacity: 1;
+  transform: rotateY(0);
+}
+.rotate-exit-active {
+  opacity: 0;
+  transform: rotateY(90deg);
+  transition: opacity 400ms ease, transform 400ms ease;
+}
+/* Entering */
+.slide-up-enter {
+  opacity: 0;
+  transform: translateY(100%);
+}
+.slide-up-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 300ms ease, transform 300ms ease;
+}
+
+/* Exiting */
+.slide-up-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+.slide-up-exit-active {
+  opacity: 0;
+  transform: translateY(-100%);
+  transition: opacity 300ms ease, transform 300ms ease;
+}
+
+/* Entering */
+.blur-enter {
+  opacity: 0;
+  filter: blur(10px);
+}
+.blur-enter-active {
+  opacity: 1;
+  filter: blur(0);
+  transition: opacity 300ms ease, filter 300ms ease;
+}
+
+/* Exiting */
+.blur-exit {
+  opacity: 1;
+  filter: blur(0);
+}
+.blur-exit-active {
+  opacity: 0;
+  filter: blur(10px);
+  transition: opacity 300ms ease, filter 300ms ease;
+}
+
+/* Entering */
+.fade-slide-enter {
+  opacity: 0;
+  transform: translateX(-100%);
+}
+.fade-slide-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 300ms ease, transform 300ms ease;
+}
+
+/* Exiting */
+.fade-slide-exit {
+  opacity: 1;
+  transform: translateX(0);
+}
+.fade-slide-exit-active {
+  opacity: 0;
+  transform: translateX(100%);
+  transition: opacity 300ms ease, transform 300ms ease;
+}

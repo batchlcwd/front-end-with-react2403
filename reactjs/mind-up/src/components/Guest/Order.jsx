@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import {
   createOrder,
@@ -21,6 +21,7 @@ const Order = () => {
   const { isLogin, user } = useAuth();
   const [course, setCourse] = useState(null);
   const [address, setAddress] = useState("");
+  const navigate = useNavigate();
   async function getCourse() {
     const course = await getCourseById(courseId);
     console.log(course);
@@ -114,6 +115,7 @@ const Order = () => {
 
       toast.success("all done , thanks for buying");
       console.log(response);
+      navigate("/dashboard/courses");
     } catch (error) {
       toast.error("error in verifying the payment..");
       console.log(error);

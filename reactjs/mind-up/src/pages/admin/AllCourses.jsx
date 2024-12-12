@@ -217,11 +217,11 @@ const AllCourses = () => {
         }}
       >
         <div className="grid grid-cols-12 gap-5">
-          <div className="col-span-7">
+          <div className="col-span-12 lg:col-span-7">
             <CourseView courseToDisplay={courseToDisplay} userView={false} />
           </div>
 
-          <div className="col-span-5  ">
+          <div className=" col-span-12 lg:col-span-5  ">
             {/* videos */}
             <div className="flex justify-center flex-col items-center space-y-3">
               <h1>Videos of {courseToDisplay?.title}</h1>
@@ -241,7 +241,7 @@ const AllCourses = () => {
                   {courseVideos.map((video, index) => (
                     <List.Item
                       key={index}
-                      className="p-3 rounded-lg  bg-gray-950 sm:pb-4"
+                      className="p-3 rounded-lg   dark:bg-gray-950 sm:pb-4"
                     >
                       <div className="flex items-center space-x-4 rtl:space-x-reverse">
                         <div>

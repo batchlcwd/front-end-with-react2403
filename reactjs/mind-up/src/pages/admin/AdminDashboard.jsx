@@ -21,6 +21,8 @@ import { IoMdAddCircle } from "react-icons/io";
 import { IoAddCircle } from "react-icons/io5";
 import { TiThMenu } from "react-icons/ti";
 
+import { AnimatedRoutes } from "../../config/routes";
+
 const AdminDashboard = () => {
   const location = useLocation();
 
@@ -61,7 +63,10 @@ const AdminDashboard = () => {
                 className="cursor-pointer"
               />
             )}
-            <Outlet />
+
+            <AnimatedRoutes>
+              <Outlet />
+            </AnimatedRoutes>
           </div>
         </div>
         <Drawer
