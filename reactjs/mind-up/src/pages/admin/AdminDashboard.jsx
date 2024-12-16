@@ -22,6 +22,7 @@ import { IoAddCircle } from "react-icons/io5";
 import { TiThMenu } from "react-icons/ti";
 
 import { AnimatedRoutes } from "../../config/routes";
+import { MdSuperscript } from "react-icons/md";
 
 const AdminDashboard = () => {
   const location = useLocation();
@@ -141,6 +142,15 @@ const AdminDashboard = () => {
                         icon={IoAddCircle}
                       >
                         Add Category
+                      </Sidebar.Item>
+
+                      <Sidebar.Item
+                        as={Link}
+                        to={"/admin/users"}
+                        active={location.pathname === "/admin/users"}
+                        icon={MdSuperscript}
+                      >
+                        Users
                       </Sidebar.Item>
                     </Sidebar.ItemGroup>
                     <Sidebar.ItemGroup>

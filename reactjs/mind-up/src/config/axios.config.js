@@ -2,7 +2,7 @@ import axios from "axios";
 import { getUserLoginData } from "../helpers/LocalStorageHelper";
 import toast from "react-hot-toast";
 
-export const baseUrl = "http://localhost:8081/api/v1";
+export const baseUrl = import.meta.env.VITE_API_URL;
 
 export const publicAxios = axios.create({
   baseURL: baseUrl,
@@ -28,7 +28,7 @@ publicAxios.interceptors.response.use(
           toast.error(data.message || "Bad Request");
           break;
         case 401:
-          toast.warning("Unauthorized. Please log in again.");
+          toast.error("Unauthorized. Please log in again.");
           // Optional: Redirect to login
           window.location.href = "/login";
           break;

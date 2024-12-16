@@ -36,6 +36,7 @@ import MyCourses from "../pages/protected/MyCourses.jsx";
 import Learning from "../pages/protected/Learning.jsx";
 import CategoryCourse from "../pages/protected/CategoryCourse.jsx";
 import React from "react";
+import User from "../pages/admin/User.jsx";
 
 const AddCategory = React.lazy(() => import("../pages/admin/AddCategory.jsx"));
 
@@ -144,6 +145,10 @@ const router = createBrowserRouter([
         path: "/admin",
         element: <AdminProtectedRoute element={AdminDashboard} />,
         children: [
+          {
+            path: "users",
+            element: <User />,
+          },
           {
             path: "home",
             element: <AdminHomePage />,
