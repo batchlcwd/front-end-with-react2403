@@ -4,6 +4,7 @@ import logo from "../assets/study.png";
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { useSelector } from "react-redux";
+import { BUSINESS_NAME } from "../helpers/constants";
 const CustomNavbar = () => {
   const count = useSelector((state) => state.counter.count);
 
@@ -48,7 +49,7 @@ const CustomNavbar = () => {
           alt="Flowbite React Logo"
         />
         <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
-          Mind Up
+          {BUSINESS_NAME}
         </span>
       </Navbar.Brand>
 
